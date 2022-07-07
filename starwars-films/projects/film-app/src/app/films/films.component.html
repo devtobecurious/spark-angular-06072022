@@ -1,0 +1,32 @@
+<label *ngIf="! this.filmsPresents">
+  Aucun film présent
+</label>
+
+<table *ngIf="this.filmsPresents">
+  <thead>
+    <th>
+      Titre du film
+    </th>
+    <th>
+      Année
+    </th>
+    <th>
+      Actions
+    </th>
+  </thead>
+  <tbody>
+    <sw-film *ngFor="let itemDici of films"
+             (demanderSuppression)="supprimerFilm($event)"
+             (demanderEdition)="editerFilm($event)"
+             [item]="itemDici">
+    </sw-film>
+    <!-- <tr *ngFor="let item of films">
+      <td>
+        {{ item.titre }}
+      </td>
+      <td>
+        {{ item.annee }}
+      </td>
+    </tr> -->
+  </tbody>
+</table>
