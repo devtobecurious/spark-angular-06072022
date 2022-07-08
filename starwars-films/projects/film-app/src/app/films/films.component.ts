@@ -1,5 +1,7 @@
 import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { EditionFilmComponent } from '../features/les-films/edition-film/edition-film.component';
 import { FilmService } from '../features/les-films/services/film.service';
 import { Film } from '../models/film';
 import { LoggerService } from '../shared/services/logger.service';
@@ -9,7 +11,7 @@ import { LoggerService } from '../shared/services/logger.service';
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.css']
 })
-export class FilmsComponent implements OnInit {
+export class FilmsComponent implements OnInit, OnDestroy {
   // films: string[] = ['Episode I - The Phantom Menace', 'Episode II - Attack of the Clones', 'Episode III - Revenge of the Sith', 'Episode IV - A New Hope', 'Episode V - The Empire Strikes Back', 'Episode VI - Return of the Jedi'];
   // films: Film[] = [ new Film('Episode I - The Phantom Menace', 1999), ];
   // films : Film[] = [
@@ -30,14 +32,22 @@ export class FilmsComponent implements OnInit {
 
   @Output() editionUnFilm = new EventEmitter<Film>();
 
+  subscription = new Subscription();
 
   constructor(private logger: LoggerService,
               private filmsService: FilmService) { }
 
+
   ngOnInit(): void {
-    this.filmsService.getAll().subscribe(items => {
+    var obs= this.filmsService.getAll();
+
+    // obs.subscribe();
+
+    const sub = obs.subscribe(items => {
+      
       this.films = items;
     });
+    this.subscription.add(sub);
   }
 
   supprimerFilm(film: Film) {
@@ -51,5 +61,9 @@ export class FilmsComponent implements OnInit {
 
   get filmsPresents(): boolean {
     return this.films.length > 0;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

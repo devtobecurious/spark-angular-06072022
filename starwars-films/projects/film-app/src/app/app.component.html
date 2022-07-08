@@ -1,10 +1,15 @@
 <h1>Suivi des films {{ title1 }} !</h1>
 <h2>{{ title2 }}</h2>
 
-<app-films (editionUnFilm)="editerFilm($event)"></app-films>
+<sw-menu-principal></sw-menu-principal>
+
+<!-- <sw-decouverte-observables></sw-decouverte-observables>
+
+<app-films (editionUnFilm)="editerFilm($event)"></app-films> -->
 <!-- <br>
 <app-films></app-films> -->
 
 
 
-<sw-edition-film [item]="filmAEditer" *ngIf="filmExiste"></sw-edition-film>
+<router-outlet></router-outlet>
+<!-- mon composant se charge ici -->

@@ -10,17 +10,9 @@ export class AppComponent {
   title1 = 'Star wars';
   title2 = 'Une histoire Star wars';
 
-  filmAEditer !: Film;
-
   constructor() {
     //alert('Ah que johny');
   }
 
-  editerFilm(film: Film) {
-    this.filmAEditer = film;
-  }
 
-  get filmExiste(): boolean {
-    return this.filmAEditer !== undefined && this.filmAEditer !== null;
-  }
 }

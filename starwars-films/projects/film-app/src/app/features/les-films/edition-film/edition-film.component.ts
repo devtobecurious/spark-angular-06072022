@@ -14,4 +14,8 @@ export class EditionFilmComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  save() {
+    // this.service.save(this.item).subscribe();
+  }
+
 }

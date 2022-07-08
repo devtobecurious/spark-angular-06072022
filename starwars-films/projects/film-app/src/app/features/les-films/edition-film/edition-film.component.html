@@ -1,3 +1,16 @@
 <h2>Edition du film</h2>
 
-<label>Titre :  {{ item.titre }}</label>
+
+{{ item | json }}
+
+{{ item.titre | uppercase }}
+
+<form #filmForm="ngForm"  method="post">
+  <label>Titre :  </label>
+  <!-- <input type="text" name="titre" value="{{ item.titre }}"> -->
+
+  <input required name="titre" [(ngModel)]="item.titre">
+  <input required type="number" name="annee" [(ngModel)]="item.annee">
+
+  <button (click)="save()" [disabled]="! filmForm.form.valid">Sauvegarder</button>
+</form>

@@ -1,0 +1,8 @@
+ul {
+  width: 200px;
+}
+
+ul > li {
+  list-style: none;
+  border: 3px solid grey;
+}

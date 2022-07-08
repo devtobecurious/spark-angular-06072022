@@ -9,18 +9,23 @@ import { LesFilmsModule } from './features/les-films/les-films.module';
 import { LoggerService } from './shared/services/logger.service';
 
 import {HttpClientModule} from '@angular/common/http';
+import { DecouverteObservablesComponent } from './shared/components/decouverte-observables/decouverte-observables.component';
+import { ObjetstrouvesModule } from './features/objetstrouves/objetstrouves.module';
+import { ContainersModule } from './containers/containers.module';
+import { MenuPrincipalComponent } from './shared/ui/menu-principal/menu-principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmsComponent,
-    FilmComponent
+    DecouverteObservablesComponent,
+    MenuPrincipalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LesFilmsModule
+    ContainersModule,
+    ObjetstrouvesModule
   ],
   providers: [
     // LoggerService
